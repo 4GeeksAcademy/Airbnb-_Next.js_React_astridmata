@@ -3,10 +3,15 @@
 import { useState, useEffect } from "react";
 import { Listing } from "@/types/listing";
 import { listings as mockListings } from "@/data/listings";
+import Navbar from "@/components/Navbar";
+import CategoryBar from "@/components/CategoryBar";
+import ListingCard from "@/components/ListingCard";
 
 export default function Home() {
   const [listings, setListings] = useState<Listing[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [category, setCategory] = useState("Alojamiento");
 
   useEffect(() => {
     // Simulamos la carga de datos (1 segundo)
@@ -18,24 +23,36 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  return (
-    <div className="min-h-screen bg-white">
-      {/* Aquí luego añadirás <Navbar /> y <CategoryBar /> */}
+  // Filtramos la lista basándonos en  texto como categoría:
+  const filteredListings = listings.filter((item: any) => {
+    const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase());
 
-      <main className="p-4">
-        {isLoading ? (
-          <div className="text-center mt-10">Cargando alojamientos...</div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {listings.map((item) => (
-              <div key={item.id} className="border border-zinc-200 p-4 rounded-xl shadow-sm hover:shadow-md transition">
-                <h2 className="font-semibold text-zinc-900">{item.title}</h2>
-                <p className="text-zinc-500 text-sm mt-1">${item.pricePerNight} / noche</p>
-              </div>
-            ))}
-          </div>
-        )}
-      </main>
+    // Lógica inteligente: ¿La categoría seleccionada está en sus servicios o es su categoría base?
+    const matchesCategory =
+      item.category === category ||
+      item.amenities.includes(category);
+
+    return matchesSearch && matchesCategory;
+  });
+  return (
+    <div>
+      <Navbar onSearch={setSearchQuery} />
+      <CategoryBar onSelect={setCategory} />
+
+
+    <main className="p-4">
+  {isLoading ? (
+    <div className="text-white">Cargando...</div>
+  ) : (
+    // Aquí definimos la cuadrícula una sola vez
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      {filteredListings.map((item: any) => (
+        // Renderizamos el componente una vez por cada item
+        <ListingCard key={item.id} listing={item} />
+      ))}
+    </div>
+  )}
+</main>
     </div>
   );
 }

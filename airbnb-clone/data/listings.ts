@@ -13,7 +13,7 @@ export const listings: Listing[] = [
     imageUrl: "/placeholder1.jpg", // Puedes cambiar esto por una URL real luego
     hostName: "Salvador",
     hostYears: 1,
-    amenities: ["Wifi", "Cocina", "Playa privada"],
+    amenities: ["Wifi", "Cocina", "Playa"],
   },
   {
     id: "2",
