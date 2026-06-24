@@ -23,3 +23,27 @@ El usuario es un viajero que busca experiencias de alojamiento únicas y cómoda
     * `PhotoGallery`: Carrusel de imágenes con navegación.
     * `BookingCard`: Tarjeta interactiva con contador de huéspedes y botón de reserva.
     * `AmenitiesSection`: Cuadrícula con iconos y etiquetas de servicios.
+
+    ---
+
+## Especificación Técnica de Componentes (Home Page)
+
+### 1. `Navbar`
+*   **Propósito:** Barra de navegación superior.
+*   **Props:** `searchPlaceholder: string`
+*   **Relación:** Contenedor superior con logo y buscador.
+
+### 2. `CategoryBar`
+*   **Propósito:** Filtros horizontales por categoría.
+*   **Props:** `categories: string[]`, `activeCategory: string`, `onSelect: (c: string) => void`
+*   **Relación:** Ubicado justo debajo del `Navbar`.
+
+### 3. `ListingCard`
+*   **Propósito:** Tarjeta individual de alojamiento.
+*   **Props:** `image: string`, `title: string`, `price: number`, `rating: number`
+*   **Relación:** Hijo de `ListingGrid`.
+
+### 4. `ListingGrid`
+*   **Propósito:** Contenedor responsivo (`grid`) para las tarjetas.
+*   **Props:** `listings: Listing[]`
+*   **Relación:** Sección principal del cuerpo (`main`).
