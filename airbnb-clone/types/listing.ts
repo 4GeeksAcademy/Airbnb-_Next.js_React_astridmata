@@ -8,7 +8,7 @@ export interface Listing {
   rating: number;
   location: string;
   category: string;
-  imageUrl: string;
+  images: string[];
   hostName: string;
   hostYears: number;
   amenities: string[];

@@ -10,7 +10,7 @@ export const listings: Listing[] = [
     rating: 4.95,
     location: "Lechería, Venezuela",
     category: "Alojamiento",
-    imageUrl: "/placeholder1.jpg", // Puedes cambiar esto por una URL real luego
+    images: ["/placeholder1.jpg", "/beach1.jpg", "/beach2.jpg"], 
     hostName: "Salvador",
     hostYears: 1,
     amenities: ["Wifi", "Cocina", "Playa"],
@@ -23,9 +23,13 @@ export const listings: Listing[] = [
     rating: 4.83,
     location: "Madrid, España",
     category: "Alojamiento",
-    imageUrl: "/placeholder2.jpg",
+    images: ["/placeholder2.jpg", "/room1.jpg", "/room2.jpg"],
     hostName: "Equipo Sercotel",
     hostYears: 5,
     amenities: ["Gimnasio", "Restaurante", "Wifi"],
   }
 ];
+
+export const getListingById = (id: string) => {
+  return listings.find((listing) => listing.id === id);
+};
