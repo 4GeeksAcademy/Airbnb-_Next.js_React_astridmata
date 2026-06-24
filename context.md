@@ -47,3 +47,15 @@ El usuario es un viajero que busca experiencias de alojamiento únicas y cómoda
 *   **Propósito:** Contenedor responsivo (`grid`) para las tarjetas.
 *   **Props:** `listings: Listing[]`
 *   **Relación:** Sección principal del cuerpo (`main`).
+
+## Especificación de Componentes: Catalog Page (/catalog)
+
+### 1. `ResultsHeader`
+- **Propósito:** Mostrar cantidad de resultados y selector de orden.
+- **Props:** `total: number`, `onSort: (order: 'asc' | 'desc') => void`
+- **Estructura:** Flexbox con texto a la izquierda y select a la derecha.
+
+### 2. `MapPlaceholder`
+- **Propósito:** Visualización geográfica.
+- **Estructura:** Contenedor gris oscuro (`bg-zinc-800`) con texto centrado "Mapa".
+- **Comportamiento:** Fijo en escritorio (`sticky top-20`) para acompañar el scroll.
